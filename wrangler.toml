@@ -1,8 +1,0 @@
-# This file is not needed for Cloudflare Pages deployment via Dashboard
-# Cloudflare Pages uses the dashboard configuration instead
-# 
-# If you want to use Wrangler CLI for Pages deployment, use:
-# wrangler pages deploy frontend/.next --project-name=bethanz-leaderboard
-#
-# For dashboard deployment, delete this file or ignore it
-
