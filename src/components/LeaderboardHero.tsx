@@ -248,11 +248,11 @@ export default function LeaderboardHero({
 
       {/* Top 3 Winners - Above Countdown */}
       {topThree.length > 0 && (
-        <div className="mb-8 md:mb-12">
-          <div className="flex flex-col md:grid md:grid-cols-3 gap-4 md:gap-6 max-w-6xl mx-auto px-2 podium-container">
+        <div className="mb-6 sm:mb-8 md:mb-12">
+          <div className="flex flex-col md:grid md:grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-6xl mx-auto px-2 sm:px-4 podium-container">
             {/* 1st Place - Mobile first */}
             {topThree[0] && (
-              <div className="glass-card border border-yellow-500/50 rounded-lg p-3 md:p-6 text-center relative shadow-lg animate-fade-in-up glow-1st order-1 md:order-2 podium-1st" style={{ animationDelay: '0.2s', opacity: 0, minHeight: '280px', height: 'auto', alignSelf: 'flex-start' }}>
+              <div className="glass-card border border-yellow-500/50 rounded-lg p-3 sm:p-4 md:p-6 text-center relative shadow-lg animate-fade-in-up glow-1st order-1 md:order-2 podium-1st" style={{ animationDelay: '0.2s', opacity: 0, minHeight: 'auto', height: 'auto', alignSelf: 'flex-start' }}>
                 {/* Beautiful Gold Crown - Natural entrance animation */}
                 {showCrown && (
                   <div className="absolute -top-6 md:-top-8 left-1/2 transform -translate-x-1/2 z-10">
@@ -310,7 +310,7 @@ export default function LeaderboardHero({
 
             {/* 2nd Place - Diamond Color */}
             {topThree[1] && (
-              <div className="glass-card border border-cyan-400/50 rounded-lg p-3 md:p-6 text-center hover:border-cyan-300/70 transition-all shadow-lg shadow-cyan-500/20 animate-fade-in-up flex flex-col glow-2nd order-2 md:order-1 podium-2nd" style={{ animationDelay: '0.1s', opacity: 0, minHeight: '280px', height: 'auto', marginTop: '0' }}>
+              <div className="glass-card border border-cyan-400/50 rounded-lg p-3 sm:p-4 md:p-6 text-center hover:border-cyan-300/70 transition-all shadow-lg shadow-cyan-500/20 animate-fade-in-up flex flex-col glow-2nd order-2 md:order-1 podium-2nd" style={{ animationDelay: '0.1s', opacity: 0, minHeight: 'auto', height: 'auto', marginTop: '0' }}>
                 <div className="flex justify-center mb-3 md:mb-4 mt-2">
                   <div className="relative">
                     <Image
@@ -351,7 +351,7 @@ export default function LeaderboardHero({
 
             {/* 3rd Place - Brown Color */}
             {topThree[2] && (
-              <div className="glass-card border border-amber-800/50 rounded-lg p-3 md:p-6 text-center hover:border-amber-700/70 transition-all shadow-lg shadow-amber-900/20 animate-fade-in-up flex flex-col glow-3rd order-3 podium-3rd" style={{ animationDelay: '0.3s', opacity: 0, minHeight: '280px', height: 'auto', marginTop: '0' }}>
+              <div className="glass-card border border-amber-800/50 rounded-lg p-3 sm:p-4 md:p-6 text-center hover:border-amber-700/70 transition-all shadow-lg shadow-amber-900/20 animate-fade-in-up flex flex-col glow-3rd order-3 podium-3rd" style={{ animationDelay: '0.3s', opacity: 0, minHeight: 'auto', height: 'auto', marginTop: '0' }}>
                 <div className="flex justify-center mb-3 md:mb-4 mt-2">
                   <div className="relative">
                     <Image
@@ -411,7 +411,7 @@ export default function LeaderboardHero({
             <h3 className="text-base md:text-lg lg:text-xl text-gray-300 mb-4 md:mb-6 uppercase tracking-wide font-semibold px-2">
               LEADERBOARD ENDS IN
             </h3>
-            <div className="flex justify-center items-center gap-2 md:gap-4 max-w-2xl mx-auto px-2">
+            <div className="flex justify-center items-center gap-1.5 sm:gap-2 md:gap-4 max-w-2xl mx-auto px-2">
           {[
             { label: "DAYS", value: animatedCountdown.days, prevValue: prevCountdown.days },
             { label: "HRS", value: animatedCountdown.hours, prevValue: prevCountdown.hours },
@@ -422,19 +422,19 @@ export default function LeaderboardHero({
             return (
               <div 
                 key={`${item.label}-${index}`} 
-                className="text-center flex-1 max-w-[80px] md:max-w-[100px] animate-scale-in"
+                className="text-center flex-1 max-w-[70px] sm:max-w-[80px] md:max-w-[100px] animate-scale-in"
                 style={{ animationDelay: `${0.7 + index * 0.1}s`, opacity: 0 }}
               >
-                <div className="bg-gradient-to-b from-bethanz-dark to-bethanz-darker border-2 border-bethanz-red/50 rounded-xl p-3 md:p-4 shadow-lg backdrop-blur-sm transition-all hover:border-bethanz-red hover:shadow-xl relative overflow-hidden">
+                <div className="bg-gradient-to-b from-bethanz-dark to-bethanz-darker border-2 border-bethanz-red/50 rounded-lg sm:rounded-xl p-2 sm:p-3 md:p-4 shadow-lg backdrop-blur-sm transition-all hover:border-bethanz-red hover:shadow-xl relative overflow-hidden">
                   <div 
                     key={`${item.label}-${item.value}`}
-                    className={`text-2xl md:text-4xl lg:text-5xl font-black text-white tabular-nums countdown-number ${isChanging ? 'countdown-flip' : ''}`} 
+                    className={`text-xl sm:text-2xl md:text-4xl lg:text-5xl font-black text-white tabular-nums countdown-number ${isChanging ? 'countdown-flip' : ''}`} 
                     style={{ fontFamily: 'monospace' }}
                   >
                     {String(item.value).padStart(2, "0")}
                   </div>
                 </div>
-                <div className="text-xs md:text-sm text-gray-400 mt-2 uppercase font-medium tracking-wider">
+                <div className="text-[10px] sm:text-xs md:text-sm text-gray-400 mt-1 sm:mt-2 uppercase font-medium tracking-wider">
                   {item.label}
                 </div>
               </div>

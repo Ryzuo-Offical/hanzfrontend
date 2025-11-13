@@ -23,6 +23,7 @@ export interface HistoricalLeaderboard {
     totalWagered: number;
     prize: number;
   };
+  leaderboard_data?: LeaderboardData; // Full leaderboard data including top 10
 }
 
 export interface CountdownData {
