@@ -139,43 +139,13 @@ export default function LeaderboardTable({ data }: LeaderboardTableProps) {
       {/* Leaders History - Only show most recent previous leaderboard */}
       {data.history && data.history.length > 0 && (
         <div className="max-w-6xl mx-auto mt-12 sm:mt-16">
-          <h2 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wide mb-3 sm:mb-4 px-2 sm:px-0">
-            LEADERS HISTORY
-          </h2>
-          <p className="text-gray-400 text-xs sm:text-sm mb-4 sm:mb-6 text-center max-w-3xl mx-auto px-2 sm:px-0">
-            VIEW PREVIOUS LEADERBOARD WINNERS AND TOP 10 RANKINGS
-          </p>
-
           <div className="flex justify-center items-center px-2 sm:px-0">
             {data.history[0] && (
               <button
                 onClick={() => handleViewHistory(data.history[0])}
-                className="w-full sm:w-auto bg-bethanz-dark border border-bethanz-gray rounded-lg p-4 sm:p-6 hover:border-bethanz-red transition-all cursor-pointer text-center max-w-[400px] sm:max-w-none"
+                className="bg-bethanz-red hover:bg-red-700 text-white font-bold py-3 px-6 sm:py-4 sm:px-8 rounded-lg transition-all duration-300 transform hover:scale-105 text-sm sm:text-base uppercase tracking-wide shadow-lg hover:shadow-xl"
               >
-                <div className="text-center mb-3 sm:mb-4">
-                  <p className="text-gray-400 text-sm sm:text-base mb-1 font-semibold">{data.history[0].period}</p>
-                  <p className="text-gray-500 text-xs sm:text-sm">{data.history[0].date}</p>
-                </div>
-                <div className="flex justify-center mb-3 sm:mb-4">
-                  <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center border-2 border-yellow-500">
-                    <span className="text-xl sm:text-2xl">🏆</span>
-                  </div>
-                </div>
-                <h3 className="text-base sm:text-lg font-bold text-white text-center mb-2 uppercase">
-                  WINNER {data.history[0].winner.username}
-                </h3>
-                <p className="text-gray-400 text-center text-xs mb-2 sm:mb-3">
-                  TOTAL PRIZE
-                </p>
-                <div className="bg-gradient-to-r from-bethanz-red to-red-700 text-white font-bold py-2 px-3 sm:px-4 rounded text-center border border-red-600 flex items-center justify-center gap-1.5 text-sm sm:text-base">
-                  <Image src="/usd_green.svg" alt="USD" width={14} height={14} className="w-4 h-4" />
-                  {formatUSD(data.history[0].winner.prize)}
-                </div>
-                <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-bethanz-gray/30">
-                  <p className="text-bethanz-red text-xs sm:text-sm font-semibold text-center uppercase">
-                    View Previous Leaderboard →
-                  </p>
-                </div>
+                View Previous Leaderboard
               </button>
             )}
           </div>

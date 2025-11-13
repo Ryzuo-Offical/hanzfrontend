@@ -238,7 +238,7 @@ export default function LeaderboardHero({
                 alt="DICEBLOX"
                 width={600}
                 height={200}
-                className="w-auto h-10 sm:h-12 md:h-20 lg:h-24 object-contain"
+                className="w-auto h-16 sm:h-12 md:h-20 lg:h-24 object-contain"
                 priority
               />
             </div>
@@ -252,7 +252,7 @@ export default function LeaderboardHero({
           <div className="flex flex-col md:grid md:grid-cols-3 gap-3 sm:gap-4 md:gap-6 max-w-6xl mx-auto px-2 sm:px-4 podium-container">
             {/* 1st Place - Mobile first */}
             {topThree[0] && (
-              <div className="glass-card border border-yellow-500/50 rounded-lg p-3 sm:p-4 md:p-6 text-center relative shadow-lg animate-fade-in-up glow-1st order-1 md:order-2 podium-1st" style={{ animationDelay: '0.2s', opacity: 0, minHeight: 'auto', height: 'auto', alignSelf: 'flex-start' }}>
+              <div className="glass-card border border-yellow-500/50 rounded-lg p-3 sm:p-4 md:p-6 text-center relative shadow-lg animate-fade-in-up glow-1st order-1 md:order-2 podium-1st flex flex-col" style={{ animationDelay: '0.2s', opacity: 0, alignSelf: 'flex-start' }}>
                 {/* Beautiful Gold Crown - Natural entrance animation */}
                 {showCrown && (
                   <div className="absolute -top-6 md:-top-8 left-1/2 transform -translate-x-1/2 z-10">
@@ -310,7 +310,7 @@ export default function LeaderboardHero({
 
             {/* 2nd Place - Diamond Color */}
             {topThree[1] && (
-              <div className="glass-card border border-cyan-400/50 rounded-lg p-3 sm:p-4 md:p-6 text-center hover:border-cyan-300/70 transition-all shadow-lg shadow-cyan-500/20 animate-fade-in-up flex flex-col glow-2nd order-2 md:order-1 podium-2nd" style={{ animationDelay: '0.1s', opacity: 0, minHeight: 'auto', height: 'auto', marginTop: '0' }}>
+              <div className="glass-card border border-cyan-400/50 rounded-lg p-3 sm:p-4 md:p-6 text-center hover:border-cyan-300/70 transition-all shadow-lg shadow-cyan-500/20 animate-fade-in-up flex flex-col glow-2nd order-2 md:order-1 podium-2nd" style={{ animationDelay: '0.1s', opacity: 0, marginTop: '0' }}>
                 <div className="flex justify-center mb-3 md:mb-4 mt-2">
                   <div className="relative">
                     <Image
@@ -351,7 +351,7 @@ export default function LeaderboardHero({
 
             {/* 3rd Place - Brown Color */}
             {topThree[2] && (
-              <div className="glass-card border border-amber-800/50 rounded-lg p-3 sm:p-4 md:p-6 text-center hover:border-amber-700/70 transition-all shadow-lg shadow-amber-900/20 animate-fade-in-up flex flex-col glow-3rd order-3 podium-3rd" style={{ animationDelay: '0.3s', opacity: 0, minHeight: 'auto', height: 'auto', marginTop: '0' }}>
+              <div className="glass-card border border-amber-800/50 rounded-lg p-3 sm:p-4 md:p-6 text-center hover:border-amber-700/70 transition-all shadow-lg shadow-amber-900/20 animate-fade-in-up flex flex-col glow-3rd order-3 podium-3rd" style={{ animationDelay: '0.3s', opacity: 0, marginTop: '0' }}>
                 <div className="flex justify-center mb-3 md:mb-4 mt-2">
                   <div className="relative">
                     <Image

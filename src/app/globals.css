@@ -298,6 +298,17 @@ html {
   }
 }
 
+/* Mobile: Ensure all podium cards have same height */
+@media (max-width: 767px) {
+  .podium-container > div.podium-1st,
+  .podium-container > div.podium-2nd,
+  .podium-container > div.podium-3rd {
+    height: auto;
+    min-height: 0;
+    flex: 1 1 auto;
+  }
+}
+
 /* Countdown flip animation */
 @keyframes countdownFlip {
   0% {

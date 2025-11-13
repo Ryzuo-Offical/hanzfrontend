@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { X } from "lucide-react";
 import Image from "next/image";
 import { HistoricalLeaderboard, LeaderboardData } from "@/types";
@@ -38,23 +38,63 @@ export default function LeaderboardHistoryModal({
     }).format(amount);
   };
 
-  // Get top 10 entries from historical leaderboard data
-  const getTopTen = (): LeaderboardData | null => {
-    if (!history?.leaderboard_data) return null;
-    
-    const data = history.leaderboard_data;
-    const allEntries = [...(data.topThree || []), ...(data.challengers || [])]
-      .sort((a, b) => a.rank - b.rank)
-      .slice(0, 10);
-    
-    return {
-      topThree: allEntries.slice(0, 3),
-      challengers: allEntries.slice(3, 10),
-      history: [],
-    };
-  };
+  const [topTen, setTopTen] = useState<LeaderboardData | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
 
-  const topTen = getTopTen();
+  // Get top 10 entries from historical leaderboard data
+  useEffect(() => {
+    const fetchHistoricalData = async () => {
+      if (!history) return;
+      
+      // If we have leaderboard_data, use it
+      if (history.leaderboard_data) {
+        const data = history.leaderboard_data;
+        const allEntries = [...(data.topThree || []), ...(data.challengers || [])]
+          .sort((a, b) => a.rank - b.rank)
+          .slice(0, 10);
+        
+        setTopTen({
+          topThree: allEntries.slice(0, 3),
+          challengers: allEntries.slice(3, 10),
+          history: [],
+        });
+        return;
+      }
+
+      // If no leaderboard_data, try to fetch it using end_date from historical record
+      // Check if we have end_date in the history object (might be in a different format)
+      const historicalRecord = history as any;
+      if (historicalRecord.end_date) {
+        try {
+          const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3001";
+          const response = await fetch(`${backendUrl}/api/leaderboard/historical?endDate=${historicalRecord.end_date}`);
+          if (response.ok) {
+            const fetchedData: LeaderboardData = await response.json();
+            const allEntries = [...(fetchedData.topThree || []), ...(fetchedData.challengers || [])]
+              .sort((a, b) => a.rank - b.rank)
+              .slice(0, 10);
+            
+            setTopTen({
+              topThree: allEntries.slice(0, 3),
+              challengers: allEntries.slice(3, 10),
+              history: [],
+            });
+            return;
+          }
+        } catch (error) {
+          console.error("Failed to fetch historical leaderboard by date:", error);
+        }
+      }
+      
+      // If we can't fetch it, show empty state
+      setTopTen(null);
+    };
+
+    if (isOpen && history) {
+      setIsLoading(true);
+      fetchHistoricalData().finally(() => setIsLoading(false));
+    }
+  }, [history, isOpen]);
 
   // Close on Escape key
   useEffect(() => {
@@ -94,9 +134,8 @@ export default function LeaderboardHistoryModal({
         <div className="sticky top-0 bg-bethanz-dark border-b border-bethanz-gray p-4 sm:p-6 flex items-center justify-between z-10">
           <div>
             <h2 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wide">
-              {history.period} - {history.date}
+              Previous Leaderboard
             </h2>
-            <p className="text-gray-400 text-sm mt-1">Previous Leaderboard</p>
           </div>
           <button
             onClick={onClose}
@@ -109,7 +148,12 @@ export default function LeaderboardHistoryModal({
 
         {/* Content */}
         <div className="p-4 sm:p-6">
-          {topTen && topTen.topThree.length + topTen.challengers.length > 0 ? (
+          {isLoading ? (
+            <div className="text-center py-12">
+              <div className="w-12 h-12 border-4 border-bethanz-red border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+              <p className="text-gray-400">Loading previous leaderboard...</p>
+            </div>
+          ) : topTen && topTen.topThree.length + topTen.challengers.length > 0 ? (
             <>
               {/* Top 3 */}
               {topTen.topThree.length > 0 && (

@@ -24,6 +24,7 @@ export interface HistoricalLeaderboard {
     prize: number;
   };
   leaderboard_data?: LeaderboardData; // Full leaderboard data including top 10
+  end_date?: string; // End date for fetching historical data if needed
 }
 
 export interface CountdownData {
