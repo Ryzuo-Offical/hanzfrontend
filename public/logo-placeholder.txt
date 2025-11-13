@@ -1,0 +1,7 @@
+Place your BETHANZ logo here as: bethanz-logo.png
+
+Recommended size: 400x400px (will be displayed as 120x40)
+Format: PNG with transparent background
+
+Then uncomment the Image component in src/components/Navbar.tsx
+
