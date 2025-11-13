@@ -1,7 +1,8 @@
-name = "bethanz-leaderboard-frontend"
-compatibility_date = "2024-01-01"
-pages_build_output_dir = ".next"
-
-[env.production]
-name = "bethanz-leaderboard-frontend"
+# This file is not needed for Cloudflare Pages deployment via Dashboard
+# Cloudflare Pages uses the dashboard configuration instead
+# 
+# If you want to use Wrangler CLI for Pages deployment, use:
+# wrangler pages deploy frontend/.next --project-name=bethanz-leaderboard
+#
+# For dashboard deployment, delete this file or ignore it
 
