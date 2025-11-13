@@ -22,26 +22,6 @@ export function useWebSocket() {
   const hasFetchedInitialData = useRef(false);
   const countdownIntervalRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Fallback: Fetch countdown via HTTP if WebSocket fails
-  const fetchCountdownFallback = async () => {
-    try {
-      const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3001";
-      const response = await fetch(`${backendUrl}/api/countdown`);
-      if (response.ok) {
-        const data = await response.json();
-        // Ensure endDate is a Date object
-        if (data.endDate && typeof data.endDate === 'string') {
-          data.endDate = new Date(data.endDate);
-        }
-        setCountdown(data);
-        return true;
-      }
-    } catch (error) {
-      console.error("Failed to fetch countdown via HTTP:", error);
-    }
-    return false;
-  };
-
   // Fallback: Fetch leaderboard via HTTP if WebSocket fails
   const fetchLeaderboardFallback = async () => {
     try {
@@ -120,10 +100,9 @@ export function useWebSocket() {
   useEffect(() => {
     const backendUrl = process.env.NEXT_PUBLIC_BACKEND_URL || "http://localhost:3001";
     
-    // Fetch initial data via HTTP first (more reliable)
+    // Fetch initial leaderboard data via HTTP first (more reliable)
     if (!hasFetchedInitialData.current) {
       hasFetchedInitialData.current = true;
-      fetchCountdownFallback();
       fetchLeaderboardFallback();
     }
 
@@ -144,8 +123,7 @@ export function useWebSocket() {
     socketInstance.on("disconnect", () => {
       console.log("Disconnected from WebSocket");
       setIsConnected(false);
-      // Try HTTP fallback when disconnected
-      fetchCountdownFallback();
+      // Try HTTP fallback for leaderboard when disconnected
       fetchLeaderboardFallback();
     });
 
@@ -153,7 +131,6 @@ export function useWebSocket() {
       console.error("WebSocket connection error:", error);
       // Try HTTP fallback on connection error
       if (!hasFetchedInitialData.current) {
-        fetchCountdownFallback();
         fetchLeaderboardFallback();
       }
     });

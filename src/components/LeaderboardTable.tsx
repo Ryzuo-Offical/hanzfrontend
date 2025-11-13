@@ -62,81 +62,81 @@ export default function LeaderboardTable({ data }: LeaderboardTableProps) {
         <div className="bg-bethanz-dark border border-bethanz-gray rounded-lg overflow-hidden">
           <div className="overflow-x-auto">
             <table className="w-full min-w-[500px]">
-              <thead className="bg-bethanz-gray/50 border-b border-bethanz-gray">
-                <tr>
+            <thead className="bg-bethanz-gray/50 border-b border-bethanz-gray">
+              <tr>
                   <th className="hidden sm:table-cell px-4 sm:px-6 py-2 sm:py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                    #
-                  </th>
+                  #
+                </th>
                   <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-left text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                    USER
-                  </th>
+                  USER
+                </th>
                   <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-right text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                    WAGERED
-                  </th>
+                  WAGERED
+                </th>
                   <th className="px-3 sm:px-4 md:px-6 py-2 sm:py-3 text-right text-xs font-semibold text-gray-400 uppercase tracking-wider">
-                    PRIZE
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                {remainingEntries.length > 0 ? (
-                  remainingEntries.map((entry, index) => (
-                    <tr
-                      key={entry.userId}
-                      className="border-b border-bethanz-gray/30 hover:bg-bethanz-gray/20 transition-all animate-fade-in-up"
-                      style={{ animationDelay: `${0.5 + index * 0.1}s`, opacity: 0 }}
-                    >
+                  PRIZE
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+              {remainingEntries.length > 0 ? (
+                remainingEntries.map((entry, index) => (
+                  <tr
+                    key={entry.userId}
+                    className="border-b border-bethanz-gray/30 hover:bg-bethanz-gray/20 transition-all animate-fade-in-up"
+                    style={{ animationDelay: `${0.5 + index * 0.1}s`, opacity: 0 }}
+                  >
                       <td className="hidden sm:table-cell px-4 sm:px-6 py-3 sm:py-4 text-white font-semibold text-sm sm:text-base">
-                        #{entry.rank}
-                      </td>
+                          #{entry.rank}
+                        </td>
                       <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4">
                         <div className="flex items-center space-x-2 sm:space-x-3">
-                          <Image
-                            src={entry.avatarUrl || "https://cdn.diceblox.com/avatars/default.webp"}
-                            alt={entry.username}
-                            width={40}
-                            height={40}
+                            <Image
+                              src={entry.avatarUrl || "https://cdn.diceblox.com/avatars/default.webp"}
+                              alt={entry.username}
+                              width={40}
+                              height={40}
                             className="w-7 h-7 sm:w-8 sm:h-8 md:w-10 md:h-10 rounded-full border border-bethanz-dark object-cover flex-shrink-0"
-                            unoptimized={entry.avatarUrl?.includes('rbxcdn.com')}
-                            onError={(e) => {
-                              if (e.currentTarget.src !== "https://cdn.diceblox.com/avatars/default.webp") {
-                                e.currentTarget.src = "https://cdn.diceblox.com/avatars/default.webp";
-                              }
-                            }}
-                          />
+                              unoptimized={entry.avatarUrl?.includes('rbxcdn.com')}
+                              onError={(e) => {
+                                if (e.currentTarget.src !== "https://cdn.diceblox.com/avatars/default.webp") {
+                                  e.currentTarget.src = "https://cdn.diceblox.com/avatars/default.webp";
+                                }
+                              }}
+                            />
                           <span className="text-white font-medium text-xs sm:text-sm md:text-base truncate max-w-[100px] sm:max-w-[150px] md:max-w-none">
-                            {entry.username}
-                          </span>
-                        </div>
-                      </td>
+                              {entry.username}
+                            </span>
+                          </div>
+                        </td>
                       <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right text-white font-semibold text-xs sm:text-sm md:text-base">
                         <div className="flex items-center justify-end gap-1 sm:gap-1.5">
                           <Image src="/robux.svg" alt="Robux" width={14} height={20} className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
                           <span className="whitespace-nowrap">{formatRobux(entry.wagered)}</span>
-                        </div>
-                      </td>
+                          </div>
+                        </td>
                       <td className="px-3 sm:px-4 md:px-6 py-3 sm:py-4 text-right">
                         <span className="text-white font-semibold text-xs sm:text-sm md:text-base flex items-center justify-end gap-1 sm:gap-1.5">
                           <Image src="/usd_green.svg" alt="USD" width={14} height={14} className="w-3 h-3 sm:w-4 sm:h-4 flex-shrink-0" />
                           <span className="whitespace-nowrap">{formatUSD(PRIZE_AMOUNTS[entry.rank] || entry.prize)}</span>
-                        </span>
-                      </td>
-                    </tr>
-                  ))
-                ) : (
-                  <tr>
-                    <td colSpan={4} className="px-4 sm:px-6 py-8 sm:py-12 text-center text-gray-400 text-sm sm:text-base">
-                      No entries yet. Be the first to compete!
-                    </td>
+                          </span>
+                        </td>
                   </tr>
-                )}
-              </tbody>
-            </table>
+                ))
+              ) : (
+                <tr>
+                    <td colSpan={4} className="px-4 sm:px-6 py-8 sm:py-12 text-center text-gray-400 text-sm sm:text-base">
+                    No entries yet. Be the first to compete!
+                  </td>
+                </tr>
+              )}
+            </tbody>
+          </table>
           </div>
         </div>
       </div>
 
-      {/* Leaders History */}
+      {/* Leaders History - Only show most recent previous leaderboard */}
       {data.history && data.history.length > 0 && (
         <div className="max-w-6xl mx-auto mt-12 sm:mt-16">
           <h2 className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wide mb-3 sm:mb-4 px-2 sm:px-0">
@@ -146,16 +146,15 @@ export default function LeaderboardTable({ data }: LeaderboardTableProps) {
             VIEW PREVIOUS LEADERBOARD WINNERS AND TOP 10 RANKINGS
           </p>
 
-          <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center px-2 sm:px-0">
-            {data.history.map((hist) => (
+          <div className="flex justify-center items-center px-2 sm:px-0">
+            {data.history[0] && (
               <button
-                key={hist.id}
-                onClick={() => handleViewHistory(hist)}
-                className="w-full sm:w-auto bg-bethanz-dark border border-bethanz-gray rounded-lg p-4 sm:p-6 hover:border-bethanz-red transition-all cursor-pointer text-left sm:text-center min-w-[200px] sm:min-w-0"
+                onClick={() => handleViewHistory(data.history[0])}
+                className="w-full sm:w-auto bg-bethanz-dark border border-bethanz-gray rounded-lg p-4 sm:p-6 hover:border-bethanz-red transition-all cursor-pointer text-center max-w-[400px] sm:max-w-none"
               >
                 <div className="text-center mb-3 sm:mb-4">
-                  <p className="text-gray-400 text-sm sm:text-base mb-1 font-semibold">{hist.period}</p>
-                  <p className="text-gray-500 text-xs sm:text-sm">{hist.date}</p>
+                  <p className="text-gray-400 text-sm sm:text-base mb-1 font-semibold">{data.history[0].period}</p>
+                  <p className="text-gray-500 text-xs sm:text-sm">{data.history[0].date}</p>
                 </div>
                 <div className="flex justify-center mb-3 sm:mb-4">
                   <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 flex items-center justify-center border-2 border-yellow-500">
@@ -163,14 +162,14 @@ export default function LeaderboardTable({ data }: LeaderboardTableProps) {
                   </div>
                 </div>
                 <h3 className="text-base sm:text-lg font-bold text-white text-center mb-2 uppercase">
-                  WINNER {hist.winner.username}
+                  WINNER {data.history[0].winner.username}
                 </h3>
                 <p className="text-gray-400 text-center text-xs mb-2 sm:mb-3">
                   TOTAL PRIZE
                 </p>
                 <div className="bg-gradient-to-r from-bethanz-red to-red-700 text-white font-bold py-2 px-3 sm:px-4 rounded text-center border border-red-600 flex items-center justify-center gap-1.5 text-sm sm:text-base">
                   <Image src="/usd_green.svg" alt="USD" width={14} height={14} className="w-4 h-4" />
-                  {formatUSD(hist.winner.prize)}
+                  {formatUSD(data.history[0].winner.prize)}
                 </div>
                 <div className="mt-3 sm:mt-4 pt-3 sm:pt-4 border-t border-bethanz-gray/30">
                   <p className="text-bethanz-red text-xs sm:text-sm font-semibold text-center uppercase">
@@ -178,7 +177,7 @@ export default function LeaderboardTable({ data }: LeaderboardTableProps) {
                   </p>
                 </div>
               </button>
-            ))}
+            )}
           </div>
         </div>
       )}
